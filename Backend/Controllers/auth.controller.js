@@ -51,7 +51,7 @@ export async function logIn(req,res)
          {return res.status(400).json({success:false,message:"All Fields Are Required"});}  
         const existingUser=await user.findOne({email:email})
         if(!existingUser)
-         {return res.status(404).json({success:false,message:"Invalid Credentials"});}
+         {return res.status(404).json({success:false,message:"User Doesn't Exist"});}
         const isPasswordCorrect= await bcrypt.compare(password,existingUser.password);
         if(!isPasswordCorrect)
          {return res.status(400).json({success:false,message:"Invalid Credentials"});}

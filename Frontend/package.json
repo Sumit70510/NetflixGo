@@ -17,6 +17,8 @@
     "react-hot-toast": "^2.5.2",
     "react-player": "^2.16.0",
     "react-router-dom": "^7.5.2",
+    "tailwind": "^2.3.1",
+    "tailwind-scrollbar-hide": "^2.0.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

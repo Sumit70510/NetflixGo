@@ -3,11 +3,11 @@ import axios from "axios";
 import {create} from 'zustand';
 export const useAuthStore=create((set)=>
     ({
-      user :null,
-      isSignUp:false,
+      user          :null,
+      isSignUp      :false,
       isCheckingAuth:true,
-      isLoggingOut:false,
-      isLoggingIn:true,
+      isLoggingOut  :false,
+      isLoggingIn   :true,
       signup:async(Credentials)=>
        {
         set({isSignUp:true});
@@ -28,14 +28,14 @@ export const useAuthStore=create((set)=>
         set({isLoggingIn:true});
         try 
          {
-           const response= await axios.post('/api/v1/auth/login',Credentials);
+           const response = await axios.post('/api/v1/auth/login',Credentials);
            set({user:response.data.user,isLoggingIn:false});
-           toast.success("LoggedIn Successfully"); 
+           toast.success( "LoggedIn Successfully" ); 
          } 
         catch(error)
          {
            set({isLoggingIn:false,user:null});
-           toast.error("An Error Occured");
+           toast.error( error.response?.data?.message || "Login Failed..." );
          }
        },
       logout:async()=>
@@ -52,11 +52,11 @@ export const useAuthStore=create((set)=>
            {
             set({isLoggingOut:false});
             console.log('Here in Error');
-            toast.error(error.response?.data?.message||"Logged Out Failed") 
+            toast.error( error.response?.data?.message || "Logged Out Failed" );
            }
         },
       authCheck:async()=>
-        {
+       {
           set({isCheckingAuth:true});
           try 
            {
@@ -68,6 +68,6 @@ export const useAuthStore=create((set)=>
              set({isCheckingAuth:false,user:null});
             //  toast.error(error.response?.data?.message||"An Error Occured");
            }
-        }
+       }     
      })
 );

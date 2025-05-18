@@ -13,6 +13,7 @@ const LoginPage=()=>
         login({email,password});
       }
     return(
+
     <div className='h-screen w-full hero-bg'>
       <header className='max-w-6xl mx-auto flex items-center justify-between p-4'>
         <Link to={'/'}>
@@ -33,7 +34,7 @@ const LoginPage=()=>
               <label htmlFor='password' className='text-sm font-medium text-gray-300'>Password</label>
               <input tpye='password' className='w-full px-3 py-2 int-1 border border-gray-700 rounded-md 
                bg-transparent text-white focus:outline-none focus-ring'
-               placeholder='********' id='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+               placeholder='******' id='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
              </div>
              <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700">
               LogIn
@@ -47,6 +48,7 @@ const LoginPage=()=>
         </div>
       </div>
     </div>
+    
   );
 };
 export default LoginPage;

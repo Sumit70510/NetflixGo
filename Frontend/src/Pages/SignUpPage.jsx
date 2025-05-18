@@ -9,13 +9,16 @@ const SignUpPage=()=>
      const [username,setUsername]=useState("");
      const [password,setPassword]=useState("");
      const {signup}=useAuthStore();
+
      const handleSignUp=(e)=>
        {
          e.preventDefault();
         //  console.log(email,username,password);
          signup({email,username,password});
        }
+
      return (
+      
      <div className='h-screen w-full hero-bg'>
        <header className='max-w-6xl mx-auto flex items-center justify-between p-4'>
          <Link to={'/'}>
