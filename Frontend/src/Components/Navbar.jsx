@@ -5,18 +5,18 @@ import { useAuthStore } from '../store/AuthUser';
 import { ContentStore } from "../store/Content.js";
 const Navbar=()=> 
 {
- const [isMobileMenuOpen,setIsMobileMenuOpen]=useState(false);
+  const [isMobileMenuOpen,setIsMobileMenuOpen]=useState(false);
   const toggleMobileMenu=()=>{
     setIsMobileMenuOpen(!isMobileMenuOpen);
    }
   const {contentType,setContentType}=ContentStore();
-  // console.log(contentType); 
+
   const {user,logout}=useAuthStore();
   return (
     <header className='max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20 z-50'>
         <div className='flex items-center gap-10 z-50'>
           <Link to='/'>
-           <img src='netflix-logo.png' alt='Netflix_Logo' className='w-32 sm:w-40'/>
+           <img src='/netflix-logo.png' alt='Netflix_Logo' className='w-32 sm:w-40'/>
           </Link>
           <div className='hidden sm:flex gap-3 items-center'>
             <Link to='/' className='hover:underline' onClick={()=>setContentType('Movie')}>
@@ -66,5 +66,4 @@ const Navbar=()=>
     </header>
   )
 }
-
-export default Navbar
+export default Navbar;

@@ -8,12 +8,11 @@ const SignUpPage=()=>
      const [email,setEmail]=useState(emailValue||"");
      const [username,setUsername]=useState("");
      const [password,setPassword]=useState("");
-     const {signup}=useAuthStore();
+     const {signup,isSignUp}=useAuthStore();
 
      const handleSignUp=(e)=>
        {
          e.preventDefault();
-        //  console.log(email,username,password);
          signup({email,username,password});
        }
 
@@ -47,8 +46,10 @@ const SignUpPage=()=>
              bg-transparent text-white focus:outline-none focus-ring'
              placeholder='********' id='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
              </div>
-             <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700">
-                SignUp
+             <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700"
+               disabled={isSignUp}
+              >
+                {isSignUp?"Loading...":"Sign Up"}
              </button>
            </form>
            <div className='text-center text-gray-400'>

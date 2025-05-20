@@ -45,13 +45,12 @@ export const useAuthStore=create((set)=>
            {
             await axios.post('/api/v1/auth/logout');
             set({user:null,isLoggingOut:false});
-            console.log('Here Working');
             toast.success("LoggedOut Successfully");
            }  
         catch(error)
            {
             set({isLoggingOut:false});
-            console.log('Here in Error');
+  
             toast.error( error.response?.data?.message || "Logged Out Failed" );
            }
         },

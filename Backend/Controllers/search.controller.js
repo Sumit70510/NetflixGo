@@ -64,6 +64,7 @@ export async function searchTv(req,res)
        const response=await fetchFromTMDB(`https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1`);
        if(response.results.length===0)
         {return res.status(404).send(null);}
+       
        await user.findByIdAndUpdate(req.user._id, {$push :
          {
            searchHistory:
