@@ -6,6 +6,7 @@ const LoginPage=()=>
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const {login,isLoggingIn}=useAuthStore();
+
     const handleLogin=(e)=>
       {
         e.preventDefault();
@@ -34,8 +35,7 @@ const LoginPage=()=>
                bg-transparent text-white focus:outline-none focus-ring'
                placeholder='******' id='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
              </div>
-             <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700"
-               disabled={isLoggingIn}>
+             <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700">
                {!isLoggingIn?"Loading...":"Log In"}
              </button>
           </form>

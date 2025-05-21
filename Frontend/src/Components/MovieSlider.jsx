@@ -1,4 +1,4 @@
-import {useEffect ,useState,useRef} from 'react';
+import {useEffect ,useState,useRef,useMemo} from 'react';
 import { ContentStore } from '../store/Content.js';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +10,10 @@ const MovieSlider=({category})=>
     const [content,setContent]=useState([]);
     const [showArrows,setShowArrows]=useState(false);
     const slideRef=useRef(null);
+     const formattedContentType = useMemo(
+    () => (contentType === 'Movie' ? 'Movies' : 'TV Shows'),
+    [contentType]
+  );
     const scrollLeft=()=>{
       if(slideRef.current)
       {
@@ -22,24 +26,27 @@ const MovieSlider=({category})=>
 
     useEffect(()=>{
           const getContent= async ()=>{
-          const res= await axios.get(`/api/v1/${contentType}/${category}`)
+          const res= await axios.get(`http://localhost:5000/api/v1/${contentType}/${category}`)
           setContent(res.data.content);
         }
         getContent();
       },[contentType,category]);
 
-    return(
+    const safeCategory = category || '';
+    const formattedCategoryName = safeCategory.replaceAll('_', " ")[0]?.toUpperCase() + safeCategory.replaceAll('_', " ").slice(1);
+
+  return(
       <div className='bg-black text-white relative px-5 md:px-20' 
        onMouseEnter={()=>setShowArrows(true)} onMouseLeave={()=>setShowArrows(false)}>
        <h2 className='mb-4 text-2xl font-bold'>
-        {category}
+        {formattedCategoryName} {formattedContentType}
        </h2>
        <div className='flex space-x-4 overflow-scroll scrollbar-hide' ref={slideRef}>
-        {content.map((item)=>
-         ( <Link to={`/watch/${item.id}`} key={item.id} className='relative min-w-[250px] group'>
+        {content.filter(item=>item.backdrop_path).map((item)=>(
+          <Link to={`/watch/${item?.id}`} key={item.id} className='relative min-w-[250px] group'>
            <div className='rounded-lg overflow-hidden'>
             <img src={SMALL_IMG_BASE_URL+item.backdrop_path} alt={item.title||item.name} 
-            className='transition-transform duration-300 easy-in-out group-hover:scale-125'/>
+            className='transition-transform duration-300 ease-in-out group-hover:scale-125'/>
            </div>
            <p className='mt-2 text-center'>
              {item.title||item.name} 
