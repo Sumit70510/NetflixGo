@@ -1,4 +1,4 @@
-const express=require('express');
+// const express=require('express');
 import express from 'express' ;
 import authRoutes from './Routes/auth.route.js';
 import movieRoutes from './Routes/movie.route.js';
