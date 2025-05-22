@@ -1,4 +1,4 @@
-// const express=require('express');
+const express=require('express');
 import express from 'express' ;
 import authRoutes from './Routes/auth.route.js';
 import movieRoutes from './Routes/movie.route.js';
@@ -28,7 +28,7 @@ app.listen(PORT,()=>
 if(ENV_VARS.NODE_ENV==="production")
  {
    app.use(express.static(path.join(__dirname,'/Frontend/dist')));
-  //  app.get('/*', (req, res) => {
-  // res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
-// });
+   app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
+});
  }
